@@ -1,0 +1,27 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css"
+      xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml"/>
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <h3>Last month data and Predicted Price.</h3>
+  <div class="container" align="left">
+    <embed type="image/svg+xml" src='{{graph_data|safe}}' style='max-width:1000px' />
+</div>
+
+  Acording to Past Month Data Predicted Price:<strong><font color="red">{{predicted_price}}</font></strong>
+  </body>
+</html>
+{%endblock%}

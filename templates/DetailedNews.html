@@ -1,0 +1,83 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+<script src="/static/scripts/jquery-1.10.2.min.js"></script>
+<style>
+
+.panel-login {
+    align : left;
+	border-color: #ccc;
+	width:100%;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:left;
+}
+.redtext{
+    color:red;
+}
+ .left-panel
+{
+	width:80%;
+	height:100%;
+	float:left;
+	border-right: 1px solid #666;
+}
+.right-panel
+{
+	width:50%;
+	height:100%;
+	float:left;
+}
+</style>
+<body>
+<h1 align="center">News Sentiment</h1>
+<br/>
+<h1 align="left">{{name}}</h1>
+	<div class="container" >
+		<div class="row" >
+			<div class="col-xs-6 col-md-10">
+				 {% for  i in range(0, 10) %}
+				<div class="panel panel-login" >
+					<div class="panel-heading">
+						<a href="{{l[i]['link']}}"> {{l[i]['title']|safe}}</a>
+					</div>
+					<div class="panel-body">
+						{{l[i]['media']}} ° {{l[i]['date']}}<br/>
+						{{ l[i]['desc'] }}<br/>
+
+					</div>
+				</div>
+				{%endfor%}
+			</div>
+			<div class="col-xs-6 col-md-2" >
+				<h3>Recent Search</h3>
+				<table class="table table-striped table-bordered table-hover table-condensed">
+
+				{% for i in range(1,count1) %}
+				<tr>
+		  			<td>{{ newshistory[-i][0] }}</td>
+					<td>{{ newshistory[-i][2] }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+{% endblock %}

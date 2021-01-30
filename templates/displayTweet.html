@@ -1,0 +1,47 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+<head>
+<style>
+body  {
+    background-image: url("twitter.png");
+}
+</style>
+</head>
+<body>
+<h1> {{name}}</h1>
+<table class="table table-hover">
+    <tr><td>Positive Tweet Percentage</td><td>{{perptweet}} %</td></tr>
+
+    <tr><td>Negative Tweet Percentage</td><td>{{perntweet}} %</td></tr>
+
+    <tr><td>Neutral Tweet Percentage</td><td>{{pernutweet}} %</td></tr>
+</table>
+<br/>
+<table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tweets</th>
+      <th scope="col">Sentiment</th>
+    </tr>
+  </thead>
+    <tbody>
+   {% for  i in tweets %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{ i.text }}</td>
+        <td>{{ i.sentiment}}</td>
+    </tr>
+{%endfor%}
+    </tbody>
+</table>
+</body>
+{% endblock %}

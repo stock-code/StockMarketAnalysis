@@ -1,0 +1,73 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css"
+      xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<script src="/static/scripts/jquery-1.10.2.min.js"></script>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+   <style>
+        .left-panel
+        {
+            width:60%;
+            height:100%;
+            float:left;
+        }
+        .right-panel
+        {
+            width:40%;
+            height:100%;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="left-panel" align="left">
+    <embed type="image/svg+xml" src='{{graph_data|safe}}' style='max-width:1000px' />
+</div>
+<div class="right-panel">
+    Download {{name}} Data :
+    <a href='/dash/urlToDownload' class="btn btn-primary btn-lg" >Download</a>
+<table id="table1" class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Close</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Open</th>
+            <th>Volume</th>
+        </tr>
+
+       {% for  i in range(0, count) %}
+            {% if Open[i]==max1 %}
+                <tr bgcolor="7BFF33">
+            {% elif Open[i]==min1 %}
+                <tr bgcolor="FF5E33">
+            {%else%}
+                <tr>
+            {% endif %}
+
+               <td>{{ i+1 }}</td>
+               <td>{{ dates[i] }}</td>
+               <td>{{ Close[i]}}</td>
+               <td>{{ High[i]}}</td>
+               <td>{{ Low[i]}}</td>
+               <td>{{ Open[i]}}</td>
+               <td>{{ Volume[i]}}</td>
+            </tr>
+        {%endfor%}
+
+</table>
+</div>
+</body>
+</html>
+{% endblock %}

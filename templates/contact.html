@@ -1,0 +1,24 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+
+<h3>About Us</h3>
+<br/>
+<br/>
+<strong>WallStreet Inc.</strong><br />
+    DDIT,Nadiad<br />
+    <abbr title="Phone">Phone No:</abbr>
+    9662576856<br/>
+
+</address>
+
+<address>
+    <strong></strong>   Falgun Dudhat<br />
+    <strong></strong> Sachin Faldu
+</address>
+
+{% endblock %}

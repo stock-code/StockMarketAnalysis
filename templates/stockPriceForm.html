@@ -1,0 +1,87 @@
+{% if session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<script src="/static/scripts/modernizr-2.6.2.js"></script>
+<head>
+<style>
+    #custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
+</style>
+</head>
+<script src="/static/scripts/jquery-1.10.2.min.js"></script>
+<body>
+<div class="container" style="min-height:100% width:80%">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    {% for message in messages %}
+		  <div class="alert alert-warning alert-dismissible" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{message}}
+		  </div>
+		{% endfor %}
+	  {% endif %}
+	{% endwith %}
+
+	{% block body %}{% endblock %}
+	</div>
+<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+    		<h2>Search Stock Price</h2>
+                <div class="input-group col-md-12">
+                    <form action="/displayStock" method ="post">
+                        <input type="text" class="form-control input-lg" placeholder="Company code" name = "companyName" required/><br/>
+                        <label class="control-label" for="date">Date From:</label><br/>
+                        <input type="date" class="form-control input-lg" placeholder="start-date" name="sdate"required/><br/>
+                        <label class="control-label" for="date">Date To:</label><br/>
+                        <input type="date" class="form-control input-lg" placeholder="end-date" name="edate"required/><br/>
+                        <br/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+</body>
+
+{% endblock %}

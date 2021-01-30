@@ -1,0 +1,53 @@
+{% if session['username']=="Admin" %}
+    {% extends "inneradmin.html" %}
+{% elif session['username'] %}
+    {% extends "innerlayout.html" %}
+{% else %}
+    {% extends "layout.html" %}
+{% endif %}
+
+{% block content %}
+<body>
+<div class="container" style="min-height:100% width:80%">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    {% for message in messages %}
+		  <div class="alert alert-warning alert-dismissible" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{message}}
+		  </div>
+		{% endfor %}
+	  {% endif %}
+	{% endwith %}
+
+	{% block body %}{% endblock %}
+	</div>
+
+
+<div class="jumbotron">
+    <h1>WallStreet</h1>
+    <p class="lead">WallStreet is best website for Stock Market Analysis through twitter,Google News,and Historical Stock data.</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Search News of Company</h2>
+        <p>
+            Wallstreet gives top news and their sentiment according to your requirement.
+        </p>
+        <p><a class="btn btn-default" href="newsform">News &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Tweet Sentiment</h2>
+        <p>It gives recent tweet Sentiment analysis of any company.</p>
+        <p><a class="btn btn-default" href="tweetForm">Search Tweet &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>StockPrice</h2>
+        <p>Gives data according to user requirement and also partially predict next day value. </p>
+        <p><a class="btn btn-default" href="stockPriceForm">StockPrice &raquo;</a></p>
+    </div>
+</div>
+</body>
+{% endblock %}

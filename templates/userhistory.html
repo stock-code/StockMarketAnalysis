@@ -1,0 +1,73 @@
+{% extends "inneradmin.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css"
+      xmlns:max-width="http://www.w3.org/1999/xhtml" xmlns:max-width="http://www.w3.org/1999/xhtml"/>
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+<script src="/static/scripts/jquery-1.10.2.min.js"></script>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+   <style>
+        .left-panel
+        {
+            width:50%;
+            height:100%;
+            float:left;
+            border-right: 1px solid #666;
+        }
+        .right-panel
+        {
+            width:50%;
+            height:100%;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<h3>Search History of User:<font color="red"> {{ fnm }}</font></h3>
+<br/>
+<div class="left-panel" align="left">
+    <h4 align="center"> NewsHistory</h4>
+    <table id="table1" class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th>#</th>
+            <th>Company Name</th>
+            <th>Time</th>
+        </tr>
+
+        {% for  i in range(0, count1) %}
+            <tr>
+                <td>{{ i+1 }}</td>
+               <td>{{ newsresult[i][0] }}</td>
+               <td>{{ newsresult[i][2] }}</td>
+            </tr>
+        {%endfor%}
+
+    </table>
+</div>
+<div class="right-panel">
+ <h4 align="center"> TweetHistory</h4>
+    <table id="table2" class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th>#</th>
+            <th>Company Name</th>
+            <th>No of tweets</th>
+            <th>time</th>
+        </tr>
+
+        {% for  i in range(0, count2) %}
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>{{ tweetresult[i][0] }}</td>
+                <td>{{ tweetresult[i][1] }}</td>
+                <td>{{ tweetresult[i][3] }}</td>
+            </tr>
+        {%endfor%}
+
+    </table>
+</div>
+</body>
+</html>
+
+{% endblock %}
